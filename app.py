@@ -73,7 +73,7 @@ class GenerateServiceSignature(Resource):
             return jsonify({"responseCode":500, "responseMessage":"{}".format(err)})
         
     def get(self):
-        return jsonify({"Hello World!"})
+        return "Hello world!"
         
         
 api.add_resource(GenerateServiceSignature, '/v1.0/generateServiceSignature', methods=["GET","POST"])
