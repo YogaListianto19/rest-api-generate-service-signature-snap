@@ -72,8 +72,11 @@ class GenerateServiceSignature(Resource):
             print(err)
             return jsonify({"responseCode":500, "responseMessage":"{}".format(err)})
         
+    def get(self):
+        return jsonify({"Hello World!"})
         
-api.add_resource(GenerateServiceSignature, '/v1.0/generateServiceSignature', methods=["POST"])
+        
+api.add_resource(GenerateServiceSignature, '/v1.0/generateServiceSignature', methods=["GET","POST"])
 
 if __name__ == "__main__":
     app.run(debug=True, port=6300)
