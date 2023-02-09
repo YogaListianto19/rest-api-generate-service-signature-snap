@@ -52,7 +52,6 @@ def _generateServiceSignature(client_secret, http_method, relative_url, token, i
     signature.update(string_to_sign.encode())
     return base64.b64encode(signature.digest()).decode('UTF-8')
 
-
 class GenerateServiceSignature(Resource):
     # Method get dan post
     @validate_header_service
@@ -70,13 +69,18 @@ class GenerateServiceSignature(Resource):
             return jsonify({"responseCode":200, "responseMessage":"{}".format(signature)})
         except err:
             print(err)
-            return jsonify({"responseCode":500, "responseMessage":"{}".format(err)})
-        
+            return jsonify({"responseCode":400, "responseMessage":"{}".format(err)})
+    
     def get(self):
         return "Hello world!!"
+
+class HomePage(Resource):
+    def get(self):
+        return "Hello world!"
         
         
 api.add_resource(GenerateServiceSignature, '/v1.0/generateServiceSignature', methods=["GET","POST"])
+api.add_resource(HomePage, '/', methods=["GET"])
 
 if __name__ == "__main__":
     app.run(debug=True, port=6300)
